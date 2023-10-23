@@ -27,5 +27,14 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  
+
+  let P = (percent/100)/12;
+  let S = amount - contribution;
+  let pay = S * (P + (P / (((1 + P)**countMonths) - 1)));
+
+  let summa = pay * countMonths;
+
+  return summa.toFixed(2);
+
+
 }
