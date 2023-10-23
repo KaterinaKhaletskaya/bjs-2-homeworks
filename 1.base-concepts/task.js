@@ -4,7 +4,8 @@ function solveEquation(a, b, c) {
 	let arr = [];
 
 	let D = Math.pow(b, 2) - 4 * a * c;
-
+  let x1;
+  let x2;
 
 	if (D < 0) {
 		return arr;
