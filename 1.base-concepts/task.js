@@ -26,9 +26,8 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
 	let loanBody = amount - contribution;
 	let monthlyPayment = loanBody * (interestRate + (interestRate / (((1 + interestRate) ** countMonths) - 1)));
 
-	let summa = Number((monthlyPayment * countMonths).toFixed(2));
 
-	return summa;
+	return Number((monthlyPayment * countMonths).toFixed(2));
 
 
 }
