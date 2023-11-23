@@ -22,7 +22,7 @@ describe("Домашнее задание к занятию 4 «Объекты»
     
     expect(student.marks).toEqual([]);
 
-    this.hasOwnProperty('marks')
+    student.addMarks(5);
     expect(student.marks).toEqual([5]);
 
     student.addMarks(4, 4);

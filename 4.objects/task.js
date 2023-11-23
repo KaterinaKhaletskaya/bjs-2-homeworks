@@ -24,14 +24,12 @@ Student.prototype.getAverage = function() {
 		return 0;
 	}
 	let sum = 0;
-	let count = 0;
-    
+
 	for (let i = 0; i < this.marks.length; i++) {
 		sum += this.marks[i];
-		count++;
 	}
-	let average = sum / count;
-	return average;
+
+	return sum / this.marks.length;
 }
 
 Student.prototype.exclude = function(reason) {
