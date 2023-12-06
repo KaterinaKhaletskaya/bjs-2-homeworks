@@ -38,7 +38,7 @@ class Book extends PrintEditionItem {
 		super(name, releaseDate, pagesCount);
 		this.type = "book";
 		this.author = author;
-	}
+    }
 }
 
 class NovelBook extends Book {
@@ -89,3 +89,29 @@ class Library {
 	}
 
 }
+
+
+class Student {
+    constructor(name){
+        this.name = name;
+	    this.marks = {};  
+    }
+
+    
+    addMark(mark, subject) {
+        if (mark < 2 || mark > 5){
+            return;
+        }
+        if (!this.marks.hasOwnProperty(subject)) {
+            this.marks = {
+                subject:[mark]
+            }
+            }
+        }
+}
+
+
+
+// let student;
+// student = new Student("Иван Петров");
+// student.addMark(4, "math");
