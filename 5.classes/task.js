@@ -34,6 +34,7 @@ class Magazine extends PrintEditionItem {
 }
 
 class Book extends PrintEditionItem {
+
 	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
 		this.type = "book";
@@ -92,26 +93,46 @@ class Library {
 
 
 class Student {
-    constructor(name){
-        this.name = name;
-	    this.marks = {};  
-    }
+	constructor(name) {
+		this.name = name;
+		this.marks = {};
+	}
 
-    
-    addMark(mark, subject) {
-        if (mark < 2 || mark > 5){
-            return;
-        }
-        if (!this.marks.hasOwnProperty(subject)) {
-            this.marks = {
-                subject:[mark]
-            }
-            }
-        }
+
+	addMark(mark, subject) {
+		if (mark < 2 || mark > 5) {
+			return;
+		};
+
+		if (!this.marks.hasOwnProperty(subject)) {
+			this.marks[subject] = [mark];
+		} else {
+			this.marks[subject].push(mark);
+		}
+	}
+
+	getAverageBySubject(subject) {
+		if (!this.marks.hasOwnProperty(subject)) {
+			return 0;
+		} else {
+			let sumMarks = this.marks[subject].reduce((acc, item) => acc + item, 0);
+			return sumMarks / this.marks[subject].length;
+		}
+	}
+
+	getAverage() {
+
+		if (Object.keys(this.marks).length === 0) {
+			return 0;
+		}
+
+		let sum = 0;
+		for (let i = 0; i < Object.keys(this.marks).length; i++) {
+			sum += this.getAverageBySubject(Object.keys(this.marks)[i])
+		}
+		return sum / Object.keys(this.marks).length;
+
+	}
 }
 
 
-
-// let student;
-// student = new Student("Иван Петров");
-// student.addMark(4, "math");
