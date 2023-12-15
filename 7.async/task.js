@@ -15,24 +15,15 @@ class AlarmClock {
 			console.warn('Уже присутствует звонок на это же время')
 		}
 		this.alarmCollection.push({
-			callback: callback,
-			time: time,
+			callback,
+			time,
 			canCall: true,
 		});
 	}
 
 	removeClock(time) {
 
-		this.alarmCollection.forEach(() => {
-			this.alarmCollection.filter((el) => {
-				if (el.time === time) {
-					let index = this.alarmCollection.indexOf(el);
-					this.alarmCollection.splice(index, 1);
-				}
-
-			})
-		})
-
+		this.alarmCollection = this.alarmCollection.filter((el) => el.time != time);
 
 	}
 
@@ -49,15 +40,13 @@ class AlarmClock {
 			return;
 		}
 
-		let intervalId = setInterval(() =>
+		this.intervalId = setInterval(() =>
 			this.alarmCollection.forEach((alarm) => {
 				if (alarm.time === this.getCurrentFormattedTime() && alarm.canCall) {
-					alarm.canCall === false;
+					alarm.canCall = false;
 					alarm.callback();
 				}
 			}), 1000);
-
-		this.intervalId = intervalId;
 	}
 
 	stop() {
@@ -76,17 +65,3 @@ class AlarmClock {
 		this.alarmCollection = [];
 	}
 }
-
-
-// clock = new AlarmClock();
-
-// const callback = f => f;
-// clock.addClock("16:45", callback);
-// clock.addClock("16:45", callback);
-// clock.addClock("16:46", callback);
-// clock.removeClock("16:45");
-
-
-
-// clock.getCurrentFormattedTime();
-// clock.start();
